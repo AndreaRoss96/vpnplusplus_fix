@@ -54,7 +54,7 @@ def init_seed(_):
     torch.backends.cudnn.benchmark = False
 
 
-def get_parser1():
+def get_parser1():  # unused
     # parameter priority: command line > config > default
     parser = argparse.ArgumentParser(
         description='Spatial Temporal Graph Convolution Network')
@@ -198,7 +198,7 @@ def get_parser2():
     parser.add_argument('-model_saved_name', default='')
     parser.add_argument(
         '--config',
-        default=r'config\smarthome-cross-subject\train_joint_new_cont.yaml',
+        default=r'config/smarthome-cross-subject/train_joint_new_cont.yaml',
         help='path to the configuration file')
 
     # processor
