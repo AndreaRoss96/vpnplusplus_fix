@@ -11,6 +11,10 @@ import yaml
 from processor import Processor
 from utils import str2bool, init_seed
 
+####### @TODO
+# add "batch_size" to the parsed arguments (used by Processor:load_data())
+#############
+
 def get_parser2():
     # parameter priority: command line > config > default
     parser = argparse.ArgumentParser(

@@ -53,7 +53,9 @@ class Processor():
         self.arg = arg
         self.save_arg()
         if arg.phase == 'train':
+            print('I`m in train')
             if not arg.train_feeder_args['debug']:
+                print(f"IF NOT DEBUG")
                 if os.path.isdir(arg.model_saved_name):
                     print('log_dir: ', arg.model_saved_name, 'already exist')
                     '''
@@ -82,6 +84,8 @@ class Processor():
         self.arg.batch_size = batch_size
         self.arg.test_batch_size = batch_size
         if self.arg.phase == 'train':
+            print("--"*30)
+            print(self.arg.train_feeder_args)
             self.data_loader['train'] = torch.utils.data.DataLoader(
                 dataset=Feeder(**self.arg.train_feeder_args),
                 batch_size=self.arg.batch_size,
