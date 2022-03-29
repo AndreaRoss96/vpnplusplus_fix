@@ -3,6 +3,8 @@ import pickle
 import torch
 from torch.utils.data import Dataset
 import sys
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 sys.path.extend(['../'])
 from feeders import tools
@@ -24,7 +26,6 @@ class Feeder(Dataset):
         :param debug: If true, only use the first 100 samples
         :param use_mmap: If true, use mmap mode to load data, which can save the running memory
         """
-
         self.debug = debug
         self.data_path = data_path
         self.label_path = label_path
@@ -113,7 +114,7 @@ def test(data_path, label_path, vid=None, graph=None, is_3d=False):
     :param is_3d: when vis NTU, set it True
     :return: 
     '''
-    import matplotlib.pyplot as plt
+    
     loader = torch.utils.data.DataLoader(
         dataset=Feeder(data_path, label_path),
         batch_size=64,
@@ -133,7 +134,7 @@ def test(data_path, label_path, vid=None, graph=None, is_3d=False):
         plt.ion()
         fig = plt.figure()
         if is_3d:
-            from mpl_toolkits.mplot3d import Axes3D
+            
             ax = fig.add_subplot(111, projection='3d')
         else:
             ax = fig.add_subplot(111)
