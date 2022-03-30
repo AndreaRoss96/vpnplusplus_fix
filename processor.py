@@ -45,7 +45,7 @@ class GradualWarmupScheduler(_LRScheduler):
 
 class Processor():
     """ 
-        Processor for Skeleton-based Action Recgnition
+        Processor for Skeleton-based Action Recognition
 
         
     """
@@ -84,8 +84,10 @@ class Processor():
         self.arg.batch_size = batch_size
         self.arg.test_batch_size = batch_size
         if self.arg.phase == 'train':
-            print("--"*30)
+            print("----"*30)
+            print("ARGUMENTS")
             print(self.arg.train_feeder_args)
+            print("----"*30)
             self.data_loader['train'] = torch.utils.data.DataLoader(
                 dataset=Feeder(**self.arg.train_feeder_args),
                 batch_size=self.arg.batch_size,
@@ -150,7 +152,7 @@ class Processor():
                 for key in keys:
                     if w in key:
                         if weights.pop(key, None) is not None:
-                            self.print_log('Sucessfully Remove Weights: {}.'.format(key))
+                            self.print_log('Successfully Remove Weights: {}.'.format(key))
                         else:
                             self.print_log('Can Not Remove Weights: {}.'.format(key))
 

@@ -1,8 +1,12 @@
 def _name_to_int(name, protocol):
+    """
+    I don't know what this is, but I guess is somethins like a protocol to translate database's classes into int
+    """
 
     if protocol == 'CS':
 
         integer=0
+        
         if name=="Cook.Cleandishes":
             integer=1
         elif name=="Cook.Cleanup":

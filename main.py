@@ -37,9 +37,9 @@ def get_parser2():
         '--save-score',
         type=str2bool,
         default=False,
-        help='if ture, the classification score will be stored')
+        help='if true, the classification score will be stored')
 
-    # visulize and debug
+    # visualize and debug
     parser.add_argument(
         '--seed', type=int, default=1, help='random seed for pytorch')
     parser.add_argument(
@@ -161,7 +161,7 @@ if __name__ == '__main__':
         with open(p.config, 'r') as f:
             print("-"*20)
             # print(f"type: {type(f)}")
-            #print(f'\nf: {f.read()}\n')
+            # print(f'\nf: {f.read()}\n')
             print("-"*20)
 
             default_arg = yaml.load(f.read(), Loader=yaml.FullLoader)
