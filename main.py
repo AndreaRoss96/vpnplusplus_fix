@@ -174,6 +174,10 @@ if __name__ == '__main__':
         parser.set_defaults(**default_arg)
 
     arg = parser.parse_args()
+    print("-+-+-+"*20)
+    print("ARGUMENTS")
+    print(arg)
+    print("-+-+-+"*20)
     init_seed(0)
     processor = Processor(arg)
     processor.start()
