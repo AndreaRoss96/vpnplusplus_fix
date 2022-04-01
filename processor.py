@@ -127,13 +127,13 @@ class Processor():
         self.output_device = output_device
         Model = import_class(self.arg.model)
         shutil.copy2(inspect.getfile(Model), self.arg.work_dir)
-        #print(Model)
+        print(Model)
         self.model = Model(**self.arg.model_args).cuda(output_device)
-        #print(self.model)
+        print(self.model)
         self.loss = nn.CrossEntropyLoss().cuda(output_device)
 
         if self.arg.weights:
-            self.global_step = int(self.arg.weights[:-3].split('-')[-1])
+            self.global_step = int(arg.weights[:-3].split('-')[-1])
             self.print_log('Load weights from {}.'.format(self.arg.weights))
             if '.pkl' in self.arg.weights:
                 with open(self.arg.weights, 'r') as f:
@@ -150,7 +150,7 @@ class Processor():
                 for key in keys:
                     if w in key:
                         if weights.pop(key, None) is not None:
-                            self.print_log('Successfully Remove Weights: {}.'.format(key))
+                            self.print_log('Sucessfully Remove Weights: {}.'.format(key))
                         else:
                             self.print_log('Can Not Remove Weights: {}.'.format(key))
 
@@ -164,21 +164,13 @@ class Processor():
                     print('  ' + d)
                 state.update(weights)
                 self.model.load_state_dict(state)
-        
-        self.model.fuse_bin = True
-        self.model.fuse_layer()
-        self.model.cuda()
-        for p in self.model.parameters():
-            p.requires_grad = False
-        self.model.fuse_fc.weight.requires_grad = True
-        self.model.fuse_fc.bias.requires_grad = True
+
         if type(self.arg.device) is list:
             if len(self.arg.device) > 1:
                 self.model = nn.DataParallel(
                     self.model,
                     device_ids=self.arg.device,
                     output_device=output_device)
-        return self.model
 
     def load_optimizer(self):
         if self.arg.optimizer == 'SGD':

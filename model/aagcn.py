@@ -4,12 +4,14 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
+from graph.ntu_rgb_d import Graph
+import graph.ntu_rgb_d
 
 
 def import_class(name):
-    print(f"graph.inport_class {name}")
+    print(f"graph.import_class {name}")
     components = name.split('.')
-    mod = __import__(components[0])
+    mod = __import__(components[0] + "." + components[1])
     for comp in components[1:]:
         mod = getattr(mod, comp)
     return mod
