@@ -117,7 +117,7 @@ def get_parser2():
         '--device',
         default=0,
         type=int,
-        nargs='+',
+        #nargs='+',
         help='the indexes of GPUs for training or testing')
     parser.add_argument('--optimizer', default='SGD', help='type of optimizer')
     parser.add_argument(

@@ -7,6 +7,7 @@ from torch.autograd import Variable
 
 
 def import_class(name):
+    print(f"graph.inport_class {name}")
     components = name.split('.')
     mod = __import__(components[0])
     for comp in components[1:]:
