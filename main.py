@@ -27,7 +27,7 @@ def get_parser2():
     parser.add_argument('-model_saved_name', default='')
     parser.add_argument(
         '--config',
-        default=r'config/smarthome-cross-subject/train_joint_new_cont.yaml',
+        default=r'config/NTU-cross-subject/train_joint_new_cont.yaml',
         help='path to the configuration file')
 
     # processor
