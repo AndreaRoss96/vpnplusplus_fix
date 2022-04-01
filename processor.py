@@ -19,7 +19,6 @@ from torch.optim.lr_scheduler import _LRScheduler
 
 from tqdm import tqdm
 
-
 from utils import import_class, init_seed
 
 class GradualWarmupScheduler(_LRScheduler):

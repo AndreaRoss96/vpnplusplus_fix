@@ -4,8 +4,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
-from graph.ntu_rgb_d import Graph
-import graph.ntu_rgb_d
 
 
 def import_class(name):
