@@ -46,8 +46,6 @@ class GradualWarmupScheduler(_LRScheduler):
 class Processor():
     """ 
         Processor for Skeleton-based Action Recognition
-
-        
     """
     def __init__(self, arg):
         self.arg = arg
