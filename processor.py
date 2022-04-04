@@ -128,9 +128,9 @@ class Processor():
         self.output_device = output_device
         Model = import_class(self.arg.model)
         shutil.copy2(inspect.getfile(Model), self.arg.work_dir)
-        print(Model)
+        # print(Model)
         self.model = Model(**self.arg.model_args).cuda(output_device)
-        print(self.model)
+        # print(self.model)
         self.loss = nn.CrossEntropyLoss().cuda(output_device)
 
         if self.arg.weights:
@@ -242,7 +242,7 @@ class Processor():
     def train(self, epoch, save_model=False):
         self.model.train()
         self.print_log('Training epoch: {}'.format(epoch + 1))
-        summary(self.model,input_size=(3,256,300)) 
+        # summary(self.model,input_size=(3,256,300)) 
         loader = self.data_loader['train']
         self.adjust_learning_rate(epoch)
         print("==="*30)
@@ -251,7 +251,7 @@ class Processor():
         print(f"")
         print(f"self.data_loader[train] {self.data_loader['train']}")
         print(f"")
-        print(f"printing loaders D:<")
+        # print(f"printing loaders D:<")
         # make_dot(self.model, params=dict(list(self.model.named_parameters()))).render("rnn_torchviz", format="png")
         # print(f"self.model {self.model}")
 
@@ -288,8 +288,7 @@ class Processor():
         print(f"Process {process}")
         # for batch_idx, (data, label) in enumerate(process):
         # print(f"next {iter_loader.next()}")
-        for batch_idx, batch in enumerate(process):
-            print(f"batch {batch}")
+        for batch_idx, (data, label) in enumerate(self.data_loader["train"]):
             print(f"batcj_idx {batch_idx}")
             self.global_step += 1
             # get data

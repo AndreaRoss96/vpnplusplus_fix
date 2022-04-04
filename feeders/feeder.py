@@ -88,7 +88,7 @@ class Feeder(Dataset):
         if self.random_move:
             data_numpy = tools.random_move(data_numpy)
 
-        return data_numpy
+        return data_numpy, label
 
     def top_k(self, score, top_k):
         rank = score.argsort()
