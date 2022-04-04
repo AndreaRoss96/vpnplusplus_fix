@@ -1,5 +1,5 @@
 base_lr: 0.1
-batch_size: 64
+batch_size: 1
 config: ./config/NTU-cross-subject/train_joint_aagcn.yaml
 device: 0
 eval_interval: 5
@@ -33,7 +33,7 @@ start_epoch: 0
 step:
 - 30
 - 40
-test_batch_size: 64
+test_batch_size: 1
 test_feeder_args:
   data_path: /home/andrea/Desktop/NTU_DATASET/pickle/NTU-RGB-D/xsub/val_data.npy
   label_path: /home/andrea/Desktop/NTU_DATASET/pickle/NTU-RGB-D/xsub/val_label.pkl

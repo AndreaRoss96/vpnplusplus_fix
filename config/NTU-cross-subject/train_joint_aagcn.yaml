@@ -34,8 +34,8 @@ warm_up_epoch: 5
 
 # training
 device: 0 #[0, 1, 2, 3]
-batch_size: 64
-test_batch_size: 64
+batch_size: 1
+test_batch_size: 1
 num_epoch: 50
 nesterov: True
 
