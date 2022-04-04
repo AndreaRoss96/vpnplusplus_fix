@@ -16,6 +16,8 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 from torch.optim.lr_scheduler import _LRScheduler
+from torchviz import make_dot
+from torchsummary import summary
 
 from tqdm import tqdm
 
@@ -240,15 +242,19 @@ class Processor():
     def train(self, epoch, save_model=False):
         self.model.train()
         self.print_log('Training epoch: {}'.format(epoch + 1))
+        summary(self.model,input_size=(3,256,300)) 
+        loader = self.data_loader['train']
+        self.adjust_learning_rate(epoch)
         print("==="*30)
         print("Excessive amount of debug prints")
         print(f"self.data_loader[*] {self.data_loader}")
         print(f"")
         print(f"self.data_loader[train] {self.data_loader['train']}")
         print(f"")
-        print(f"self.model {self.model}")
-        loader = self.data_loader['train']
-        self.adjust_learning_rate(epoch)
+        print(f"printing loaders D:<")
+        # make_dot(self.model, params=dict(list(self.model.named_parameters()))).render("rnn_torchviz", format="png")
+        # print(f"self.model {self.model}")
+
         # for name, param in self.model.named_parameters():
         #     self.train_writer.add_histogram(name, param.clone().cpu().data.numpy(), epoch)
         loss_value = []
@@ -256,6 +262,15 @@ class Processor():
         self.record_time()
         timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
         process = tqdm(loader)
+        print(f"virgin process {process}")
+        print()
+        iter_loader = iter(loader)
+        print(f"iter_loader {iter_loader}")
+        print()
+        # iter_process = tqdm(loader, iter_loader)
+        # print(f"iter_process {iter_process}")
+        # print()torch.utils.data.dataloader._MultiProcessingDataLoaderIter
+
         if self.arg.only_train_part:
             if epoch > self.arg.only_train_epoch:
                 print('only train part, require grad')
@@ -270,8 +285,12 @@ class Processor():
                         value.requires_grad = False
                         # print(key + '-not require grad')
         print('=====================================================')
-        print(f"LOADER {loader}")
-        for batch_idx, (data, label) in enumerate(process):
+        print(f"Process {process}")
+        # for batch_idx, (data, label) in enumerate(process):
+        # print(f"next {iter_loader.next()}")
+        for batch_idx, batch in enumerate(process):
+            print(f"batch {batch}")
+            print(f"batcj_idx {batch_idx}")
             self.global_step += 1
             # get data
             data = Variable(data.float().cuda(self.output_device), requires_grad=False)
