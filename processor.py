@@ -132,7 +132,7 @@ class Processor():
         self.loss = nn.CrossEntropyLoss().cuda(output_device)
 
         if self.arg.weights:
-            self.global_step = int(arg.weights[:-3].split('-')[-1])
+            self.global_step = int(self.arg.weights[:-3].split('-')[-1])
             self.print_log('Load weights from {}.'.format(self.arg.weights))
             if '.pkl' in self.arg.weights:
                 with open(self.arg.weights, 'r') as f:
@@ -240,6 +240,13 @@ class Processor():
     def train(self, epoch, save_model=False):
         self.model.train()
         self.print_log('Training epoch: {}'.format(epoch + 1))
+        print("==="*30)
+        print("Excessive amount of debug prints")
+        print(f"self.data_loader[*] {self.data_loader}")
+        print(f"")
+        print(f"self.data_loader[train] {self.data_loader['train']}")
+        print(f"")
+        print(f"self.model {self.model}")
         loader = self.data_loader['train']
         self.adjust_learning_rate(epoch)
         # for name, param in self.model.named_parameters():
@@ -262,7 +269,9 @@ class Processor():
                     if 'PA' in key:
                         value.requires_grad = False
                         # print(key + '-not require grad')
-        for batch_idx, (data, label, index) in enumerate(process):
+        print('=====================================================')
+        print(f"LOADER {loader}")
+        for batch_idx, (data, label) in enumerate(process):
             self.global_step += 1
             # get data
             data = Variable(data.float().cuda(self.output_device), requires_grad=False)
