@@ -73,7 +73,7 @@ class Processor():
         self.global_step = 0
         self.load_model()
         self.load_optimizer()
-        self.load_data(16)
+        self.load_data(self.arg.batch_size)
         self.lr = self.arg.base_lr
         self.best_acc = 0
 
@@ -240,6 +240,7 @@ class Processor():
         return split_time
 
     def train(self, epoch, save_model=False):
+        # torch.cuda.empty_cache()
         self.model.train()
         self.print_log('Training epoch: {}'.format(epoch + 1))
         # summary(self.model,input_size=(3,256,300)) 

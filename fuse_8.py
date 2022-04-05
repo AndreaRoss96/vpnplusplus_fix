@@ -98,7 +98,7 @@ if __name__ == '__main__':
     i3d_skel = init_i3d_skel()
     proc, agcn = init_agcn(1)
     proc_cont, agcn_cont = init_agcn(2)
-    batch_size = 16
+    batch_size = 8
     n_pos = 8
     n_neg = batch_size - n_pos
     weight_factor = 0.01

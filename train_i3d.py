@@ -147,4 +147,4 @@ def run(init_lr=0.1, max_steps=100, mode='rgb', root='/data/stars/user/rdai/smar
 
 if __name__ == '__main__':
     # need to add argparse
-    run(mode=args.mode, batch_size=16)
+    run(mode=args.mode, batch_size=8)

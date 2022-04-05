@@ -45,7 +45,7 @@ def init_i3d():
     return i3d
 
 
-def run(init_lr=0.01, max_steps=1, mode='rgb', root='/data/stars/user/rdai/smarthomes/Blurred_smarthome_clipped_SSD/', batch_size=16, path=''):
+def run(init_lr=0.01, max_steps=1, mode='rgb', root='/data/stars/user/rdai/smarthomes/Blurred_smarthome_clipped_SSD/', batch_size=8, path=''):
     # setup dataset
     #train_transforms = transforms.Compose([videotransforms.RandomCrop(224),
     #                                       videotransforms.RandomHorizontalFlip(),

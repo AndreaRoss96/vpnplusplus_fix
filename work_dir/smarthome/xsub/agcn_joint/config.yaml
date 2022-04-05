@@ -1,5 +1,5 @@
 base_lr: 0.1
-batch_size: 16
+batch_size: 8
 config: /data/stars/user/sdas/PhD_work/poses_attention/PARS/config/smarthome-cross-subject/train_joint_new_cont.yaml
 device:
 - 0
